@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.purplefrizzel.weather</groupId>
+    <artifactId>Weather</artifactId>
+    <version>0.0.1</version>
+    <url>https://weather.purplefrizzel.com/</url>
+    <name>Weather</name>
+    <developers>
+        <developer>
+            <url>https://purplefrizzel.com</url>
+            <name>Purplefrizzel</name>
+            <timezone>London/GMT</timezone>
+        </developer>
+    </developers>
+    <packaging>jar</packaging>
+
+    <properties>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+
+        <java.version>16</java.version>
+
+        <versions.dropwizard>2.0.24</versions.dropwizard>
+        <verisons.annotations>22.0.0</verisons.annotations>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.dropwizard</groupId>
+                <artifactId>dropwizard-dependencies</artifactId>
+                <version>${versions.dropwizard}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+
+        <!-- Misc -->
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>${verisons.annotations}</version>
+        </dependency>
+
+        <!-- Server -->
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-assets</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-views-mustache</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

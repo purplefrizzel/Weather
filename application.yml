@@ -1,0 +1,2 @@
+bbcWeatherEndpoints:
+  observationsEndpoint: https://weather-broker-cdn.api.bbci.co.uk/en/observation/
