@@ -8,14 +8,14 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/api")
+@Path("/api/")
 @Produces(MediaType.APPLICATION_JSON)
 public class RootResource {
 
     @GET
     @Timed
     public String root() {
-        return "{ \"name\": \"weather-api\", \"versions\": \"0.0.1\", \"docs\": \"/api/docs\" }";
+        return "{ \"name\": \"weather-api\", \"versions\": \"0.0.1.1-SNAPSHOT\", \"docs\": \"/api/docs\", \"openapi\": { \"json\": \"/openapi.json\", \"yaml\": \"/openapi.yaml\" } }";
     }
 
     public static class Factory implements ResourceFactory<RootResource> {

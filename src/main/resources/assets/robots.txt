@@ -1,0 +1,10 @@
+# Version: 1.0
+# robots.txt for https://weather.purplefrizzel.com/
+
+User-Agent: *
+Disallow: /api/*
+Disallow: /assets/*
+Disallow: /js/*
+Disallow: /css/*
+
+Sitemap: https://weather.purplefrizzel.com/sitemap.xml
