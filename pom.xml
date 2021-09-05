@@ -230,6 +230,23 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.3</version>
+                <configuration>
+                    <appName>pf-weather-testing</appName>
+                    <jdkVersion>16</jdkVersion>
+                    <includeTarget>false</includeTarget>
+                    <includes>
+                        <include>target/Weather-0.0.1.1-SNAPSHOT.jar</include>
+                        <include>application.yml</include>
+                    </includes>
+                    <processTypes>
+                        <web>java -jar -Ddw.server.applicationConnectors[0].port=$PORT target/Weather-0.0.1.1-SNAPSHOT.jar server application.yml</web>
+                    </processTypes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
