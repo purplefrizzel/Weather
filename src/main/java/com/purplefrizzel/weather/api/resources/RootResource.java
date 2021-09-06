@@ -22,7 +22,7 @@ public class RootResource {
             tags = {"Meta"}
     )
     public String root() {
-        return "{ \"name\": \"weather-api\", \"versions\": \"0.0.1.1-SNAPSHOT\", \"docs\": \"/api/docs/index.html\", \"openapi\": { \"json\": \"/openapi.json\", \"yaml\": \"/openapi.yaml\" } }";
+        return "{ \"name\": \"weather-api\", \"versions\":" + getClass().getPackage().getImplementationVersion() + ", \"docs\": \"/api/docs/index.html\", \"openapi\": { \"json\": \"/openapi.json\", \"yaml\": \"/openapi.yaml\" } }";
     }
 
     public static class Factory implements ResourceFactory<RootResource> {
