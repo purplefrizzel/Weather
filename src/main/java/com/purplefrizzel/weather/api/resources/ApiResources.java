@@ -1,12 +1,10 @@
 package com.purplefrizzel.weather.api.resources;
 
-import com.purplefrizzel.weather.api.OpenAPIConfiguration;
 import com.purplefrizzel.weather.api.resources.time.TimeResource;
 import com.purplefrizzel.weather.api.resources.weather.WeatherForecastResource;
 import com.purplefrizzel.weather.api.resources.weather.WeatherReportResource;
 import com.purplefrizzel.weather.api.resources.weather.WeatherStationResource;
 import io.dropwizard.setup.Environment;
-import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
 
 public class ApiResources {
 
@@ -16,7 +14,6 @@ public class ApiResources {
         environment.jersey().register(weatherReportResource());
         environment.jersey().register(weatherForecastResource());
         environment.jersey().register(timeResource());
-        environment.jersey().register(new OpenApiResource().openApiConfiguration(OpenAPIConfiguration.configuration()));
     }
 
     private static RootResource rootResource() {

@@ -8,8 +8,14 @@ import io.dropwizard.assets.AssetsBundle;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import io.dropwizard.views.ViewBundle;
+import io.swagger.v3.jaxrs2.integration.resources.OpenApiResource;
+import io.swagger.v3.oas.integration.SwaggerConfiguration;
+import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.info.Info;
 
 import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class WeatherApplication extends Application<WeatherApplicationConfiguration> {
 
@@ -24,8 +30,10 @@ public class WeatherApplication extends Application<WeatherApplicationConfigurat
         bootstrap.addBundle(new AssetsBundle("/assets", "/assets"));
         bootstrap.addBundle(new AssetsBundle("/assets/robots.txt", "/robots.txt"));
         bootstrap.addBundle(new AssetsBundle("/assets/favicon.ico", "/favicon.ico"));
+        bootstrap.addBundle(new AssetsBundle("/swagger-ui", "/api/docs"));
 
         bootstrap.addBundle(new ViewBundle<>() {
+
             @Override
             public Map<String, Map<String, String>> getViewConfiguration(WeatherApplicationConfiguration configuration) {
                 return configuration.getViews();
@@ -37,5 +45,24 @@ public class WeatherApplication extends Application<WeatherApplicationConfigurat
     public void run(WeatherApplicationConfiguration weatherApplicationConfiguration, Environment environment) throws Exception {
         ApiResources.register(environment);
         AppResources.register(environment);
+
+        OpenAPI openAPI = new OpenAPI();
+        Info info = new Info()
+                .title("Weather API")
+                .version(getClass().getPackage().getImplementationVersion());
+
+        openAPI.info(info);
+
+        SwaggerConfiguration swaggerConfiguration = new SwaggerConfiguration()
+                .openAPI(openAPI)
+                .prettyPrint(true)
+                .resourcePackages(Stream.of("com.purplefrizzel.weather.api").collect(Collectors.toSet()));
+
+        environment.jersey().register(new OpenApiResource().openApiConfiguration(swaggerConfiguration));
+    }
+
+    @Override
+    public String getName() {
+        return "Weather";
     }
 }

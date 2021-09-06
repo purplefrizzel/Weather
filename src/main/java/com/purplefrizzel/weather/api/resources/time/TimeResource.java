@@ -4,6 +4,7 @@ import com.purplefrizzel.weather.api.models.ApiResponse;
 import com.purplefrizzel.weather.api.models.time.Time;
 import com.purplefrizzel.weather.core.resources.ResourceFactory;
 import com.purplefrizzel.weather.services.time.TimeService;
+import io.swagger.v3.oas.annotations.Operation;
 
 import javax.validation.constraints.NotEmpty;
 import javax.ws.rs.GET;
@@ -25,6 +26,12 @@ public class TimeResource {
     }
 
     @GET
+    @Operation(
+            summary = "This endpoint returns the current time and date for a given timezone.",
+            description = "This endpoint returns the current time and date for a given timezone. "
+                    + "This can be used to show the current time in a location based on the timezone returned in a weather forecast response.",
+            tags = {"Time"}
+    )
     public ApiResponse<Time> getTime(@QueryParam("timeZone") @NotEmpty String timeZone) throws URISyntaxException, IOException, InterruptedException {
         return new ApiResponse<>(timeService.getTime(timeZone), new ApiResponse.Metadata());
     }

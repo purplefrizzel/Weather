@@ -8,6 +8,7 @@ import com.purplefrizzel.weather.core.utils.Lang;
 import com.purplefrizzel.weather.services.BBCApi;
 import com.purplefrizzel.weather.services.weather.WeatherForecastService;
 import io.dropwizard.logback.shaded.checkerframework.checker.nullness.qual.Nullable;
+import io.swagger.v3.oas.annotations.Operation;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -26,6 +27,12 @@ public class WeatherForecastResource {
 
     @Path("/{location}")
     @GET
+    @Operation(
+            summary = "This endpoint returns the current weather forecast for a given location.",
+            description = "This endpoint returns the current weather forecast for a given location. "
+                    + "A weather forecast is more detailed compared to a report.",
+            tags = {"Weather"}
+    )
     public ApiResponse<WeatherForecast> getWeatherForecast(@PathParam("location") String location, @QueryParam("lang") @DefaultValue("en") @Nullable Lang langQuery, @HeaderParam("X-Lang") @DefaultValue("en") Lang langHeader) throws IOException, URISyntaxException, InterruptedException {
         Lang lang = Lang.en;
 

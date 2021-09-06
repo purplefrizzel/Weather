@@ -8,6 +8,7 @@ import com.purplefrizzel.weather.core.utils.Lang;
 import com.purplefrizzel.weather.services.BBCApi;
 import com.purplefrizzel.weather.services.weather.WeatherStationService;
 import io.dropwizard.logback.shaded.checkerframework.checker.nullness.qual.Nullable;
+import io.swagger.v3.oas.annotations.Operation;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -26,6 +27,12 @@ public class WeatherStationResource {
 
     @Path("/{location}/station")
     @GET
+    @Operation(
+            summary = "This endpoint returns the current weather station for a given location.",
+            description = "This endpoint returns the current weather station for a given location. "
+                    + "A weather station updates every hour, a field is returned in the metadata with the last update timestamp.",
+            tags = {"Weather"}
+    )
     public ApiResponse<WeatherStation> getWeatherStation(@PathParam("location") String location, @QueryParam("lang") @DefaultValue("en") @Nullable Lang langQuery, @HeaderParam("X-Lang") @DefaultValue("en") Lang langHeader) throws IOException, URISyntaxException, InterruptedException {
         Lang lang = Lang.en;
 

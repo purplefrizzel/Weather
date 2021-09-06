@@ -6,7 +6,7 @@
 
     <groupId>com.purplefrizzel.weather</groupId>
     <artifactId>Weather</artifactId>
-    <version>0.0.1.1-SNAPSHOT</version>
+    <version>0.0.1.2-SNAPSHOT</version>
     <url>https://weather.purplefrizzel.com/</url>
     <name>Weather</name>
     <developers>
@@ -29,7 +29,7 @@
 
         <versions.dropwizard>2.0.24</versions.dropwizard>
         <versions.annotations>22.0.0</versions.annotations>
-        <versions.openapi>2.1.10</versions.openapi>
+        <versions.swagger>2.1.10</versions.swagger>
     </properties>
 
     <dependencyManagement>
@@ -71,17 +71,17 @@
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-core</artifactId>
-            <version>${versions.openapi}</version>
+            <version>${versions.swagger}</version>
         </dependency>
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-jaxrs2</artifactId>
-            <version>${versions.openapi}</version>
+            <version>${versions.swagger}</version>
         </dependency>
         <dependency>
             <groupId>io.swagger.core.v3</groupId>
             <artifactId>swagger-integration</artifactId>
-            <version>${versions.openapi}</version>
+            <version>${versions.swagger}</version>
         </dependency>
     </dependencies>
 
@@ -182,6 +182,7 @@
                     <archive>
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
                         </manifest>
                     </archive>
                 </configuration>
