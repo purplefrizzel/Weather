@@ -240,11 +240,11 @@
                     <jdkVersion>16</jdkVersion>
                     <includeTarget>false</includeTarget>
                     <includes>
-                        <include>target/Weather-${version}.jar</include>
+                        <include>target/Weather-${project.version}.jar</include>
                         <include>application.yml</include>
                     </includes>
                     <processTypes>
-                        <web>java -jar -Ddw.server.applicationConnectors[0].port=$PORT target/Weather-${version}.jar server application.yml</web>
+                        <web>java -jar -Ddw.server.applicationConnectors[0].port=$PORT target/Weather-${project.version}.jar server application.yml</web>
                     </processTypes>
                 </configuration>
             </plugin>

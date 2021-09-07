@@ -30,7 +30,7 @@ public class WeatherApplication extends Application<WeatherApplicationConfigurat
         bootstrap.addBundle(new AssetsBundle("/assets", "/assets"));
         bootstrap.addBundle(new AssetsBundle("/assets/robots.txt", "/robots.txt"));
         bootstrap.addBundle(new AssetsBundle("/assets/favicon.ico", "/favicon.ico"));
-        bootstrap.addBundle(new AssetsBundle("/swagger-ui", "/api/docs"));
+        bootstrap.addBundle(new AssetsBundle("/swagger-ui", "/api/docs", "index.html", "swagger-ui"));
 
         bootstrap.addBundle(new ViewBundle<>() {
 
