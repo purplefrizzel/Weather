@@ -16,7 +16,7 @@ public final class TimeApi {
 
     public static <T> T timeClient(String timeZone, Class<T> clazz) throws URISyntaxException, IOException, InterruptedException {
         HttpRequest httpRequest = HttpRequest
-                .newBuilder(new URI("https://timeapi.io/api/Time/current/zone?timeZone=" + timeZone))
+                .newBuilder(new URI("https://www.timeapi.io/api/Time/current/zone?timeZone=" + timeZone))
                 .GET()
                 .header("User-Agent", "weather.purplefrizzel.com/" + clazz.getPackage().getImplementationVersion())
                 .build();

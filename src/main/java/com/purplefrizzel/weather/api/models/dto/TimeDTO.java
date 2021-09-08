@@ -14,6 +14,7 @@ public class TimeDTO implements DTO<Time> {
     private String dayOfWeek;
     private Boolean dstActive;
     private Integer milliSeconds;
+    private Integer seconds;
     private Integer minute;
     private Integer hour;
     private Integer day;
@@ -138,6 +139,16 @@ public class TimeDTO implements DTO<Time> {
     @JsonProperty
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    @JsonProperty
+    public Integer getSeconds() {
+        return seconds;
+    }
+
+    @JsonProperty
+    public void setSeconds(Integer seconds) {
+        this.seconds = seconds;
     }
 
     @Override
