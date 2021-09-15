@@ -1,0 +1,23 @@
+.weather-cards {
+    display: grid;
+    grid-template-areas: "1 1 1 1 1";
+    grid-column-gap: 3px;
+    padding: 20px;
+}
+
+.weather-card {
+    border-color: transparent;
+    border-width: thin;
+    border-radius: 20px;
+    background: #152c39;
+    max-width: 200px;
+    max-height: 200px;
+    height: 200px;
+}
+
+.weather-card:hover {
+    box-shadow: 0 0 32px -20px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 0 0 32px -20px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0 0 32px -20px rgba(0, 0, 0, 1);
+    outline: none;
+}

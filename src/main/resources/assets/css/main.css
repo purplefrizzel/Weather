@@ -1,23 +1,16 @@
+@import "/assets/css/colors.css";
+@import "/assets/css/search.css";
+@import "/assets/css/cards.css";
+@import "/assets/css/text.css";
+@import "/assets/css/alert.css";
+
 body {
     font-family: 'Open Sans', sans-serif;
     color: white;
     background: #081b24;
+    font-size: 22px;
 }
 
-.weather-cards {
-    display: grid;
-    grid-template-areas: "1 1 1 1 1";
-    grid-column-gap: 3px;
-    padding: 5px;
-    overflow: visible;
-}
-
-.weather-card {
-    border-color: transparent;
-    border-width: thin;
-    border-radius: 20px;
-    background: #152c39;
-    max-width: 200px;
-    max-height: 200px;
-    height: 200px;
+.app {
+    margin: 20px;
 }
