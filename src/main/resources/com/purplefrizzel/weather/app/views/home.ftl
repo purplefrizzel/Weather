@@ -15,20 +15,40 @@
     </div>
 
     <div class="weather-cards">
+        <a href="/" title="Weather in New York" class="weather-card">
+            <div class="weather-card__condition">
+                <h2>20&deg;</h2>
+                <div title="Sunny" class="icon"></div>
+            </div>
+
+            <div class="weather-card__location">
+                <p class="city">New York</p>
+                <p class="country">USA</p>
+            </div>
+        </a>
+
         <div class="weather-card">
-            <p>20&deg;</p>
+            <div class="weather-card__condition">
+                <h2>20&deg;</h2>
+                <div class="icon"></div>
+            </div>
+
+            <div class="weather-card__location">
+                <p class="city">New York</p>
+                <p class="country">USA</p>
+            </div>
         </div>
+
         <div class="weather-card">
-            <p>20&deg;</p>
-        </div>
-        <div class="weather-card">
-            <p>20&deg;</p>
-        </div>
-        <div class="weather-card">
-            <p>20&deg;</p>
-        </div>
-        <div class="weather-card">
-            <p>20&deg;</p>
+            <div class="weather-card__condition">
+                <h2>20&deg;</h2>
+                <div class="icon"></div>
+            </div>
+
+            <div class="weather-card__location">
+                <p class="city">New York</p>
+                <p class="country">USA</p>
+            </div>
         </div>
     </div>
 

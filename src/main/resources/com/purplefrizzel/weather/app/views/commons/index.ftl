@@ -15,8 +15,9 @@
 
         <link rel="stylesheet" content="text/css" href="/assets/css/main.css" />
 
-        <script src="https://kit.fontawesome.com/579e67a2b1.js" crossorigin="anonymous"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script crossorigin="anonymous" src="https://kit.fontawesome.com/579e67a2b1.js"></script>
+        <script defer crossorigin="anonymous" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script defer crossorigin="anonymous" src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
         <script src="/assets/js/app.js"></script>
         <script src="/assets/js/alert.js"></script>

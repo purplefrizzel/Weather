@@ -27,6 +27,7 @@ public class WeatherApplication extends Application<WeatherApplicationConfigurat
     public void initialize(Bootstrap<WeatherApplicationConfiguration> bootstrap) {
         super.initialize(bootstrap);
 
+        bootstrap.addBundle(new AssetsBundle("/assets/js", "/assets/js", null, "js"));
         bootstrap.addBundle(new AssetsBundle("/assets/imgs", "/assets/imgs", null, "images"));
         bootstrap.addBundle(new AssetsBundle("/assets/css/", "/assets/css", null, "css"));
         bootstrap.addBundle(new AssetsBundle("/assets/robots.txt", "/robots.txt", null, "robots-txt"));
