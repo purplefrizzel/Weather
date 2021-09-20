@@ -18,7 +18,7 @@
         <a href="/" title="Weather in New York" class="weather-card col">
             <div class="weather-card__condition">
                 <h2>20&deg;</h2>
-                <div class="spacer h"></div>
+                <div class="spacer-h"></div>
                 <div title="Sunny" class="icon"></div>
             </div>
 
@@ -31,7 +31,7 @@
         <a href="/" title="Weather in New York" class="weather-card col">
             <div class="weather-card__condition">
                 <h2>20&deg;</h2>
-                <div class="spacer h"></div>
+                <div class="spacer-h"></div>
                 <div title="Sunny" class="icon"></div>
             </div>
 
@@ -44,7 +44,7 @@
         <a href="/" title="Weather in New York" class="weather-card col">
             <div class="weather-card__condition">
                 <h2>20&deg;</h2>
-                <div class="spacer h"></div>
+                <div class="spacer-h"></div>
                 <div title="Sunny" class="icon"></div>
             </div>
 

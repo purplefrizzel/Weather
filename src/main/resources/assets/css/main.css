@@ -12,12 +12,12 @@ body {
     font-size: 22px;
 }
 
-.spacer .h {
+.spacer-h {
     margin-left: 20px;
     margin-right: 20px;
 }
 
-.spacer .v {
+.spacer-v {
     margin-top: 20px;
     margin-bottom: 20px;
 }
