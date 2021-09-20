@@ -26,7 +26,7 @@
     align-items: start;
     align-content: flex-start;
     flex-direction: column;
-    padding: 20px 10px 10px;
+    padding-left: 10px;
 }
 
 .weather-card__location .city {
@@ -63,4 +63,54 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+.weather-card__rw {
+    box-sizing: border-box;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: available;
+    width: 100%;
+}
+
+.weather-card__rw .rain {
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.weather-card__rw .wind {
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.weather-card__rw .rain p svg {
+    opacity: 0.4;
+}
+
+.weather-card__rw .wind p svg {
+    opacity: 0.4;
+}
+
+.weather-card:last-of-type {
+    background-color: transparent;
+    border-color: #152c39;
+    border-width: medium;
+    border-style: solid;
+    cursor: pointer;
+}
+
+.weather-card:last-of-type svg {
+    display: block;
+    margin: auto;
+    height: 50px;
+    width: 50px;
+    color: white;
+    fill: white;
+    padding-left: 20px;
+    padding-right: 20px;
 }
