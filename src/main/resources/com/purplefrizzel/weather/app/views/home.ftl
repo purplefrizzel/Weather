@@ -14,10 +14,11 @@
         <span class="font-bold">Forecast</span>
     </div>
 
-    <div class="weather-cards">
-        <a href="/" title="Weather in New York" class="weather-card">
+    <div class="weather-cards grid">
+        <a href="/" title="Weather in New York" class="weather-card col">
             <div class="weather-card__condition">
                 <h2>20&deg;</h2>
+                <div class="spacer h"></div>
                 <div title="Sunny" class="icon"></div>
             </div>
 
@@ -27,29 +28,31 @@
             </div>
         </a>
 
-        <div class="weather-card">
+        <a href="/" title="Weather in New York" class="weather-card col">
             <div class="weather-card__condition">
                 <h2>20&deg;</h2>
-                <div class="icon"></div>
+                <div class="spacer h"></div>
+                <div title="Sunny" class="icon"></div>
             </div>
 
             <div class="weather-card__location">
                 <p class="city">New York</p>
                 <p class="country">USA</p>
             </div>
-        </div>
+        </a>
 
-        <div class="weather-card">
+        <a href="/" title="Weather in New York" class="weather-card col">
             <div class="weather-card__condition">
                 <h2>20&deg;</h2>
-                <div class="icon"></div>
+                <div class="spacer h"></div>
+                <div title="Sunny" class="icon"></div>
             </div>
 
             <div class="weather-card__location">
                 <p class="city">New York</p>
                 <p class="country">USA</p>
             </div>
-        </div>
+        </a>
     </div>
 
     <script type="application/javascript">

@@ -1,10 +1,3 @@
-.weather-cards {
-    display: grid;
-    grid-template-areas: "1 1 1 1 1";
-    grid-column-gap: 3px;
-    padding: 20px;
-}
-
 .weather-card {
     border-radius: 20px;
     background: #152c39;
@@ -16,6 +9,7 @@
     justify-content: flex-start;
     align-items: flex-start;
     overflow: hidden;
+    margin: 40px;
 }
 
 .weather-card:hover {
@@ -45,18 +39,16 @@
     opacity: 0.48;
     color: #d1d1d1;
     font-size: 14px;
+    margin: 0;
 }
 
 .weather-card__condition {
-    max-height: 93px; /* 93px */
-    max-width: 178px;
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
     overflow: hidden;
-    padding: 10px 10px 0;
+    padding: 10px 10px 0 10px;
 }
 
 .weather-card__condition h2 {
