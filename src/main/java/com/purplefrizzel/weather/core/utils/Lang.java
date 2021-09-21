@@ -1,5 +1,7 @@
 package com.purplefrizzel.weather.core.utils;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 public enum Lang {
     en("en"),
     cy("cy"),
@@ -12,6 +14,7 @@ public enum Lang {
         this.lang = lang;
     }
 
+    @JsonValue
     public String getLang() {
         return lang;
     }

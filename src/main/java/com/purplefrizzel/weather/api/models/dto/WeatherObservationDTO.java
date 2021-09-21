@@ -2,10 +2,10 @@ package com.purplefrizzel.weather.api.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.purplefrizzel.weather.api.models.weather.WeatherReport;
-import com.purplefrizzel.weather.core.utils.PressureDirection;
 import com.purplefrizzel.weather.core.utils.WindDirection;
 
 public class WeatherObservationDTO implements DTO<WeatherReport> {
@@ -16,7 +16,7 @@ public class WeatherObservationDTO implements DTO<WeatherReport> {
     private String weatherTypeText;
     private Integer humidityPercent;
     private Integer pressureMb;
-    private String pressureDirection;
+    private PressureDirection pressureDirection;
     private String visibility;
     private String updateTimestamp;
     private Temperature temperature;
@@ -82,12 +82,12 @@ public class WeatherObservationDTO implements DTO<WeatherReport> {
     }
 
     @JsonProperty
-    public String getPressureDirection() {
+    public PressureDirection getPressureDirection() {
         return pressureDirection;
     }
 
     @JsonProperty
-    public void setPressureDirection(String pressureDirection) {
+    public void setPressureDirection(PressureDirection pressureDirection) {
         this.pressureDirection = pressureDirection;
     }
 
@@ -144,7 +144,7 @@ public class WeatherObservationDTO implements DTO<WeatherReport> {
 
         WeatherReport.Temperature temperature = new WeatherReport.Temperature(this.temperature.C, this.temperature.F);
         WeatherReport.Wind wind = new WeatherReport.Wind(new WeatherReport.Wind.Speed(this.wind.windSpeedMph, this.wind.windSpeedKph), WindDirection.valueOf(this.wind.windDirection), this.wind.windDirectionFull);
-        WeatherReport.Pressure pressure = new WeatherReport.Pressure(pressureMb, PressureDirection.valueOf(pressureDirection));
+        WeatherReport.Pressure pressure = new WeatherReport.Pressure(pressureMb, com.purplefrizzel.weather.core.utils.PressureDirection.valueOf(pressureDirection.name()));
         WeatherReport.Weather weather = new WeatherReport.Weather(weatherType, weatherTypeText);
 
         weatherReport.setTemperature(temperature);
@@ -220,6 +220,29 @@ public class WeatherObservationDTO implements DTO<WeatherReport> {
         @JsonProperty
         public String getWindDirectionAbbreviation() {
             return windDirectionAbbreviation;
+        }
+    }
+
+    private enum PressureDirection {
+        Rising("Rising"),
+        Falling("Falling"),
+        Steady("Steady"),
+        NotAvailable("Not available");
+
+        private final String pressureDirection;
+
+        PressureDirection(String pressureDirection) {
+            this.pressureDirection = pressureDirection;
+        }
+
+        @JsonValue
+        public String getPressureDirection() {
+            return pressureDirection;
+        }
+
+        @Override
+        public String toString() {
+            return this.getPressureDirection();
         }
     }
 }
