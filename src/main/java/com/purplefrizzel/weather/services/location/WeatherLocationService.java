@@ -15,4 +15,8 @@ public class WeatherLocationService {
 
         return weatherLocationDTO.convert();
     }
+
+    public WeatherLocation[] getWeatherLocations(String query, Lang lang) {
+        return null;
+    }
 }

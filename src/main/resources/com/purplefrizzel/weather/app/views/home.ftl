@@ -2,15 +2,6 @@
 <#import "commons/index.ftl" as index>
 
 <@index.content title="Home">
-    <header>
-        <form class="search-form" method="post" action="/search">
-            <div class="search-bar text-sm">
-                <i onclick="getLocation()" id="search-icon" class="fas fa-search-location" style="color: #929da3"></i>
-                <input id="query" name="query" placeholder="Search new place" />
-            </div>
-        </form>
-    </header>
-
     <div class="text-4xl" style="padding: 20px">
         <span class="font-light">Weather</span>
         <span class="font-bold">Forecast</span>

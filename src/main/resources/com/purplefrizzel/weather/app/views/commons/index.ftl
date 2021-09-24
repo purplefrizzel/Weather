@@ -1,3 +1,5 @@
+<#import "header.ftl" as header>
+
 <#macro content title>
     <!doctype html>
     <html lang="en">
@@ -25,6 +27,7 @@
     </head>
     <body>
         <main class="app">
+            <@header.header />
             <#nested>
         </main>
     </body>

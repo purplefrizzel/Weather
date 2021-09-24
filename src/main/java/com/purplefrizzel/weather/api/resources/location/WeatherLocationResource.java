@@ -8,6 +8,7 @@ import com.purplefrizzel.weather.services.location.WeatherLocationService;
 import io.dropwizard.logback.shaded.checkerframework.checker.nullness.qual.Nullable;
 import io.swagger.v3.oas.annotations.Operation;
 
+import javax.validation.constraints.NotEmpty;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.io.IOException;
@@ -42,6 +43,25 @@ public class WeatherLocationResource {
         WeatherLocation weatherLocation = weatherLocationService.getWeatherLocation(location, lang);
 
         return new ApiResponse<>(weatherLocation, new ApiResponse.Metadata());
+    }
+
+    @Path("/search")
+    @GET
+    public ApiResponse<WeatherLocation[]> locationSearch(@QueryParam("query") @NotEmpty String query, @QueryParam("lang") @DefaultValue("en") @Nullable Lang langQuery, @HeaderParam("X-Lang") @DefaultValue("en") Lang langHeader) {
+        Lang lang = Lang.en;
+
+        if (langHeader != null) {
+            lang = langHeader;
+        } else if (langQuery != null) {
+            lang = langQuery;
+        }
+
+        WeatherLocation[] locations = weatherLocationService.getWeatherLocations(query, lang);
+
+        ApiResponse.Metadata metadata = new ApiResponse.Metadata();
+        metadata.getResponseMetadata().put("totalResults", locations.length);
+
+        return new ApiResponse<>(locations, metadata);
     }
 
     public static class Factory implements ResourceFactory<WeatherLocationResource> {
