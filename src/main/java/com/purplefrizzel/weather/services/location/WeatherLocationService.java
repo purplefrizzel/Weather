@@ -1,5 +1,6 @@
 package com.purplefrizzel.weather.services.location;
 
+import com.purplefrizzel.weather.api.models.dto.LocationSearchResultsDTO;
 import com.purplefrizzel.weather.api.models.dto.WeatherLocationDTO;
 import com.purplefrizzel.weather.api.models.location.WeatherLocation;
 import com.purplefrizzel.weather.core.utils.Lang;
@@ -16,7 +17,9 @@ public class WeatherLocationService {
         return weatherLocationDTO.convert();
     }
 
-    public WeatherLocation[] getWeatherLocations(String query, Lang lang) {
-        return null;
+    public WeatherLocation[] getWeatherLocations(String query, Lang lang) throws URISyntaxException, IOException, InterruptedException {
+        LocationSearchResultsDTO resultsDTO = BBCApi.locationSearchClient(query, lang, LocationSearchResultsDTO.class);
+
+        return resultsDTO.convert().getLocations();
     }
 }

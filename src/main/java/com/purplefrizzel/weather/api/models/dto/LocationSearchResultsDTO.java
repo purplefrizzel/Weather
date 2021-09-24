@@ -2,8 +2,13 @@ package com.purplefrizzel.weather.api.models.dto;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.purplefrizzel.weather.api.models.location.LocationSearch;
+import com.purplefrizzel.weather.api.models.location.WeatherLocation;
 
-public class LocationSearchResultsDTO implements XmlDTO<LocationSearchResultsDTO> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class LocationSearchResultsDTO implements XmlDTO<LocationSearch> {
 
     private LocationSearchDTO[] results;
 
@@ -23,7 +28,13 @@ public class LocationSearchResultsDTO implements XmlDTO<LocationSearchResultsDTO
     }
 
     @Override
-    public LocationSearchResultsDTO convert() {
-        return null;
+    public LocationSearch convert() {
+        List<WeatherLocation> locations = new ArrayList<>();
+
+        for (LocationSearchDTO location : results) {
+            locations.add(location.convert());
+        }
+
+        return new LocationSearch(locations.toArray(new WeatherLocation[0]));
     }
 }

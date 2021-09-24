@@ -2,9 +2,10 @@ package com.purplefrizzel.weather.api.models.dto;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import com.purplefrizzel.weather.api.models.location.WeatherLocation;
 import com.purplefrizzel.weather.core.utils.Lang;
 
-public class LocationSearchDTO implements XmlDTO<LocationSearchDTO> {
+public class LocationSearchDTO implements XmlDTO<WeatherLocation> {
 
     private String id;
     private String name;
@@ -105,7 +106,17 @@ public class LocationSearchDTO implements XmlDTO<LocationSearchDTO> {
     }
 
     @Override
-    public LocationSearchDTO convert() {
-        return null;
+    public WeatherLocation convert() {
+        WeatherLocation location = new WeatherLocation();
+        location.setGeoId(id);
+        location.setLatitude(latitude);
+        location.setLongitude(longitude);
+        location.setTimezone(timezone);
+        location.setName(name);
+
+        WeatherLocation.LocationMetadata metadata = new WeatherLocation.LocationMetadata(false, container);
+        location.setMetadata(metadata);
+
+        return location;
     }
 }

@@ -47,7 +47,7 @@ public class WeatherLocationResource {
 
     @Path("/search")
     @GET
-    public ApiResponse<WeatherLocation[]> locationSearch(@QueryParam("query") @NotEmpty String query, @QueryParam("lang") @DefaultValue("en") @Nullable Lang langQuery, @HeaderParam("X-Lang") @DefaultValue("en") Lang langHeader) {
+    public ApiResponse<WeatherLocation[]> locationSearch(@QueryParam("query") @NotEmpty String query, @QueryParam("lang") @DefaultValue("en") @Nullable Lang langQuery, @HeaderParam("X-Lang") @DefaultValue("en") Lang langHeader) throws URISyntaxException, IOException, InterruptedException {
         Lang lang = Lang.en;
 
         if (langHeader != null) {

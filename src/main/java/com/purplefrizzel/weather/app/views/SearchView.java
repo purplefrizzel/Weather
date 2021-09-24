@@ -7,11 +7,13 @@ public class SearchView extends View {
 
     private final String query;
     private final WeatherLocation[] locations;
+    private final Integer locationsLength;
 
     public SearchView(String query, WeatherLocation[] locations) {
         super("search.ftl");
         this.query = query;
         this.locations = locations;
+        this.locationsLength = locations.length;
     }
 
     public String getQuery() {
@@ -23,6 +25,6 @@ public class SearchView extends View {
     }
 
     public Integer getLocationsLength() {
-        return locations.length;
+        return locationsLength;
     }
 }
