@@ -1,5 +1,6 @@
 package com.purplefrizzel.weather.app.resources;
 
+import com.purplefrizzel.weather.api.models.location.WeatherLocation;
 import com.purplefrizzel.weather.app.views.SearchView;
 import com.purplefrizzel.weather.core.resources.ResourceFactory;
 
@@ -12,7 +13,9 @@ public class SearchResource {
 
     @POST
     public SearchView search(@FormParam("query") String query) {
-        return new SearchView(query);
+        WeatherLocation[] locations = {};
+
+        return new SearchView(query, locations);
     }
 
     public static class Factory implements ResourceFactory<SearchResource> {

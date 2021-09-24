@@ -98,30 +98,6 @@
     font-size: medium;
 }
 
-.result .add {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #1b1b1b;
-    border-radius: 5px;
-    padding: 4px;
-    max-width: 50px;
-    width: 100%;
-    margin-top: 10px;
-}
-
-.result .add svg {
-    width: 40px;
-    height: 40px;
-}
-
-.result .add:hover {
-    box-shadow: 0 0 32px -20px rgba(0, 0, 0, 1);
-    -webkit-box-shadow: 0 0 32px -20px rgba(0, 0, 0, 1);
-    -moz-box-shadow: 0 0 32px -20px rgba(0, 0, 0, 1);
-    outline: none;
-}
-
 .result .conditions div {
     padding: 2px;
 }

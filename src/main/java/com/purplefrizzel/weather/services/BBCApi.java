@@ -1,6 +1,7 @@
 package com.purplefrizzel.weather.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.purplefrizzel.weather.core.utils.Lang;
 
 import java.io.IOException;
@@ -41,5 +42,19 @@ public final class BBCApi {
         ObjectMapper objectMapper = new ObjectMapper();
 
         return objectMapper.readValue(response.body(), clazz);
+    }
+
+    public static <T> T locationSearchClient(String query, Lang lang, Class<T> clazz) throws URISyntaxException, IOException, InterruptedException {
+        HttpRequest httpRequest = HttpRequest
+                .newBuilder(new URI("https://locator-service.api.bbci.co.uk/locations?api_key=AGbFAKx58hyjQScCXIYrxuEwJh2W2cmv&&locale=" + lang.getLang() + "&filter=international&place-types=settlement%2Cairport%2Cdistrict&order=importance&s=" + query + "&a=true&format=xml"))
+                .GET()
+                .header("User-Agent", "weather.purplefrizzel.com/" + clazz.getPackage().getImplementationVersion())
+                .build();
+
+        XmlMapper mapper = new XmlMapper();
+
+        HttpResponse<InputStream> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofInputStream());
+
+        return mapper.readValue(response.body(), clazz);
     }
 }

@@ -8,54 +8,31 @@
     </div>
 
     <div class="results">
-        <div class="no-results">
-            <p>Sorry but no results could be found for "${query}".</p>
-        </div>
-
-        <div title="Weather in Manchester" class="result">
-            <div class="location">
-                <p class="text-3xl font-reg">Manchester</p>
-                <p class="font-thin">Manchester</p>
+        <#if getLocationsLength() <= 0>
+            <div class="no-results">
+                <p>Sorry but no results could be found for "${query}".</p>
             </div>
+        </#if>
 
-            <div class="conditions">
-                <div title="Chance of rain">
-                    <p><i class="fas fa-tint"></i> 20%</p>
+        <#list locations as location>
+            <div title="Weather in Manchester" class="result">
+                <div class="location">
+                    <p class="text-3xl font-reg">Manchester</p>
+                    <p class="font-thin">Manchester</p>
                 </div>
-                <div title="Wind speed">
-                    <p><i class="fas fa-wind"></i> 7km/h</p>
-                </div>
-                <div title="Air Quality Index">
-                    <p>AQI 2</p>
-                </div>
-            </div>
 
-            <div title="Add to your places" class="add">
-                <i class="fas fa-plus"></i>
-            </div>
-        </div>
-
-        <div title="Weather in Manchester" class="result">
-            <div class="location">
-                <p class="text-3xl font-reg">Manchester</p>
-                <p class="font-thin">Manchester</p>
-            </div>
-
-            <div class="conditions">
-                <div title="Chance of rain">
-                    <p><i class="fas fa-tint"></i> 20%</p>
-                </div>
-                <div title="Wind speed">
-                    <p><i class="fas fa-wind"></i> 7km/h</p>
-                </div>
-                <div title="Air Quality Index">
-                    <p>AQI 2</p>
+                <div class="conditions">
+                    <div title="Chance of rain">
+                        <p><i class="fas fa-tint"></i> 20%</p>
+                    </div>
+                    <div title="Wind speed">
+                        <p><i class="fas fa-wind"></i> 7km/h</p>
+                    </div>
+                    <div title="Air Quality Index">
+                        <p>AQI 2</p>
+                    </div>
                 </div>
             </div>
-
-            <div title="Add to your places" class="add">
-                <i class="fas fa-plus"></i>
-            </div>
-        </div>
+        </#list>
     </div>
 </@index.content>

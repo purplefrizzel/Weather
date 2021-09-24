@@ -276,7 +276,7 @@ public class WeatherLocationDTO implements DTO<WeatherLocation> {
         weatherLocation.setLongitude(this.getLongitude());
         weatherLocation.setTimezone(this.getTimezone());
         weatherLocation.setWarningId(this.getGssId());
-        weatherLocation.setMetadata(new WeatherLocation.Metadata(this.getIsCountry(), this.getContainer()));
+        weatherLocation.setMetadata(new WeatherLocation.LocationMetadata(this.getIsCountry(), this.getContainer()));
 
         return weatherLocation;
     }

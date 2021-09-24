@@ -14,7 +14,7 @@ public class WeatherLocation implements JSONRecord {
     private String timezone;
     private String geoId;
     private String warningId;
-    private Metadata metadata;
+    private LocationMetadata locationMetadata;
 
     @JsonProperty
     public String getName() {
@@ -77,22 +77,22 @@ public class WeatherLocation implements JSONRecord {
     }
 
     @JsonProperty
-    public Metadata getMetadata() {
-        return metadata;
+    public LocationMetadata getMetadata() {
+        return locationMetadata;
     }
 
     @JsonProperty
-    public void setMetadata(Metadata metadata) {
-        this.metadata = metadata;
+    public void setMetadata(LocationMetadata locationMetadata) {
+        this.locationMetadata = locationMetadata;
     }
 
-    public static class Metadata implements JSONRecord {
+    public static class LocationMetadata implements JSONRecord {
 
         private final Boolean isCountry;
         private final String container;
 
         @JsonCreator
-        public Metadata(@JsonProperty("isCountry") Boolean isCountry, @JsonProperty("container") String container) {
+        public LocationMetadata(@JsonProperty("isCountry") Boolean isCountry, @JsonProperty("container") String container) {
             this.isCountry = isCountry;
             this.container = container;
         }
