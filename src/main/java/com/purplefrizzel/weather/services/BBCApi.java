@@ -57,4 +57,18 @@ public final class BBCApi {
 
         return mapper.readValue(response.body(), clazz);
     }
+
+    public static <T> T aggregatedForecasts(String location, Lang lang, Class<T> clazz) throws URISyntaxException, IOException, InterruptedException {
+        HttpRequest httpRequest = HttpRequest
+                .newBuilder(new URI("https://weather-broker-cdn.api.bbci.co.uk/" + lang.getLang() + "/forecast/aggregated/" + location))
+                .GET()
+                .header("User-Agent", "weather.purplefrizzel.com/" + clazz.getPackage().getImplementationVersion())
+                .build();
+
+        HttpResponse<InputStream> response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofInputStream());
+
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        return objectMapper.readValue(response.body(), clazz);
+    }
 }
