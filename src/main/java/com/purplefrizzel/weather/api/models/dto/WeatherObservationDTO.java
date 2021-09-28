@@ -143,9 +143,9 @@ public class WeatherObservationDTO implements DTO<WeatherReport> {
         WeatherReport weatherReport = new WeatherReport();
 
         WeatherReport.Temperature temperature = new WeatherReport.Temperature(this.temperature.C, this.temperature.F);
-        WeatherReport.Wind wind = new WeatherReport.Wind(new WeatherReport.Wind.Speed(this.wind.windSpeedMph, this.wind.windSpeedKph), WindDirection.valueOf(this.wind.windDirection), this.wind.windDirectionFull);
+        WeatherReport.Wind wind = new WeatherReport.Wind(new WeatherReport.Wind.Speed(this.wind.windSpeedMph, this.wind.windSpeedKph), WindDirection.valueOf(this.wind.windDirection), this.wind.windDirectionFull, "");
         WeatherReport.Pressure pressure = new WeatherReport.Pressure(pressureMb, com.purplefrizzel.weather.core.utils.PressureDirection.valueOf(pressureDirection.name()));
-        WeatherReport.Weather weather = new WeatherReport.Weather(weatherType, weatherTypeText);
+        WeatherReport.Weather weather = new WeatherReport.Weather(weatherType, weatherTypeText, "");
 
         weatherReport.setTemperature(temperature);
         weatherReport.setWind(wind);

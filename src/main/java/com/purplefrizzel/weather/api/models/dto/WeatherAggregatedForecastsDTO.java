@@ -4,8 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.purplefrizzel.weather.api.models.weather.WeatherReport;
+import com.purplefrizzel.weather.core.utils.PressureDirection;
+import com.purplefrizzel.weather.core.utils.WindDirection;
 
-public class WeatherAggregatedForecastsDTO implements DTO<WeatherAggregatedForecastsDTO> {
+import java.util.ArrayList;
+import java.util.List;
+
+public class WeatherAggregatedForecastsDTO implements DTO<WeatherReport[]> {
 
     private WeatherForecastAggregated[] forecasts;
     private Boolean isNight;
@@ -190,8 +196,8 @@ public class WeatherAggregatedForecastsDTO implements DTO<WeatherAggregatedForec
                 private String windDirection;
                 private String windDirectionAbbreviation;
                 private String windDirectionFull;
-                private String windSpeedMph;
-                private String windSpeedKph;
+                private Integer windSpeedMph;
+                private Integer windSpeedKph;
 
                 @JsonProperty
                 public String getEnhancedWeatherDescription() {
@@ -414,22 +420,22 @@ public class WeatherAggregatedForecastsDTO implements DTO<WeatherAggregatedForec
                 }
 
                 @JsonProperty
-                public String getWindSpeedMph() {
+                public Integer getWindSpeedMph() {
                     return windSpeedMph;
                 }
 
                 @JsonProperty
-                public void setWindSpeedMph(String windSpeedMph) {
+                public void setWindSpeedMph(Integer windSpeedMph) {
                     this.windSpeedMph = windSpeedMph;
                 }
 
                 @JsonProperty
-                public String getWindSpeedKph() {
+                public Integer getWindSpeedKph() {
                     return windSpeedKph;
                 }
 
                 @JsonProperty
-                public void setWindSpeedKph(String windSpeedKph) {
+                public void setWindSpeedKph(Integer windSpeedKph) {
                     this.windSpeedKph = windSpeedKph;
                 }
             }
@@ -962,7 +968,47 @@ public class WeatherAggregatedForecastsDTO implements DTO<WeatherAggregatedForec
     }
 
     @Override
-    public WeatherAggregatedForecastsDTO convert() {
-        return null;
+    public WeatherReport[] convert() {
+        List<WeatherReport> reports = new ArrayList<>();
+
+        for (WeatherForecastAggregated forecastAggregated : forecasts) {
+            WeatherReport weatherReport = new WeatherReport();
+
+            for (int i = 0; i < forecastAggregated.detailed.reports.length; i++) {
+                WeatherForecastAggregated.Detailed.Report report = forecastAggregated.detailed.reports[i];
+
+                WeatherReport.Temperature temperature = new WeatherReport.Temperature(report.getTemperatureC(), report.getFeelsLikeTemperatureF());
+                WeatherReport.Temperature.FeelsLike feelsLike = new WeatherReport.Temperature.FeelsLike(report.getFeelsLikeTemperatureC(), report.getFeelsLikeTemperatureF());
+                temperature.setFeelsLike(feelsLike);
+                weatherReport.setTemperature(temperature);
+
+                WeatherReport.Weather weather = new WeatherReport.Weather(report.getWeatherType(), report.getWeatherTypeText(), report.getEnhancedWeatherDescription());
+                weatherReport.setWeather(weather);
+
+                weatherReport.setHumidity(report.getHumidity());
+
+                WeatherReport.TimeDate timeDate = new WeatherReport.TimeDate(report.getTimeslot(), report.getTimeslotLength(), report.getLocalDate());
+                weatherReport.setTimeDate(timeDate);
+
+                weatherReport.setVisibility(report.getVisibility());
+
+                WeatherReport.Wind.Speed speed = new WeatherReport.Wind.Speed(report.getWindSpeedMph(), report.getWindSpeedKph());
+                WeatherReport.Wind wind = new WeatherReport.Wind(speed, WindDirection.valueOf(report.getWindDirection()), report.getWindDirectionFull(), report.getWindDescription());
+                weatherReport.setWind(wind);
+
+                WeatherReport.Pressure pressure = new WeatherReport.Pressure(report.getPressure(), PressureDirection.NotAvailable);
+                weatherReport.setPressure(pressure);
+            }
+
+            WeatherReport.Rain rain = new WeatherReport.Rain(forecastAggregated.summary.report.precipitationProbabilityInPercent, forecastAggregated.summary.report.precipitationProbabilityText);
+            weatherReport.setRain(rain);
+
+            WeatherReport.Updates updates = new WeatherReport.Updates(forecastAggregated.detailed.issueDate, forecastAggregated.detailed.lastUpdated);
+            weatherReport.setUpdates(updates);
+
+            reports.add(weatherReport);
+        }
+
+        return reports.toArray(new WeatherReport[0]);
     }
 }

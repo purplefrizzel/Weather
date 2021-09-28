@@ -9,17 +9,17 @@ import com.purplefrizzel.weather.api.models.JSONRecord;
 public class WeatherForecast implements JSONRecord {
 
     private final WeatherStation station;
-    private final WeatherReport report;
+    private final WeatherReport[] reports;
 
     @JsonCreator
-    public WeatherForecast(@JsonProperty("station") WeatherStation station, @JsonProperty("report") WeatherReport report) {
+    public WeatherForecast(@JsonProperty("station") WeatherStation station, @JsonProperty("reports") WeatherReport[] reports) {
         this.station = station;
-        this.report = report;
+        this.reports = reports;
     }
 
     @JsonProperty
-    public WeatherReport getReport() {
-        return report;
+    public WeatherReport[] getReport() {
+        return reports;
     }
 
     @JsonProperty

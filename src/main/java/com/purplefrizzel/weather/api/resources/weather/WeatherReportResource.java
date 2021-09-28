@@ -45,6 +45,22 @@ public class WeatherReportResource {
         return new ApiResponse<>(weatherReport, new ApiResponse.Metadata());
     }
 
+    @GET
+    @Path("/{location}/forecast")
+    public ApiResponse<WeatherReport[]> getWeatherForecast(@PathParam("location") String location, @QueryParam("lang") @DefaultValue("en") @Nullable Lang langQuery, @HeaderParam("X-Lang") @DefaultValue("en") Lang langHeader) throws IOException, URISyntaxException, InterruptedException {
+        Lang lang = Lang.en;
+
+        if (langHeader != null) {
+            lang = langHeader;
+        } else if (langQuery != null) {
+            lang = langQuery;
+        }
+
+        WeatherReport[] weatherReports = weatherReportService.getWeatherReports(location, lang);
+
+        return new ApiResponse<>(weatherReports, new ApiResponse.Metadata());
+    }
+
     public static class Factory implements ResourceFactory<WeatherReportResource> {
 
         @Override

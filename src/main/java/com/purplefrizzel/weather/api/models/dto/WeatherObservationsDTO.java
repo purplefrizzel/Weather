@@ -33,8 +33,9 @@ public class WeatherObservationsDTO implements DTO<WeatherForecast> {
     public WeatherForecast convert() {
         WeatherStation weatherStation = station.convert();
         WeatherReport weatherReport = observations[0].convert();
+        WeatherReport[] reports = {weatherReport};
 
-        return new WeatherForecast(weatherStation, weatherReport);
+        return new WeatherForecast(weatherStation, reports);
     }
 
     @Override

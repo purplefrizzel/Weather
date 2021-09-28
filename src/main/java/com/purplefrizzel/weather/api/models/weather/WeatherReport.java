@@ -1,6 +1,7 @@
 package com.purplefrizzel.weather.api.models.weather;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,8 +15,41 @@ public class WeatherReport implements JSONRecord {
     private Wind wind;
     private Pressure pressure;
     private Weather weather;
+    private Rain rain;
     private String visibility;
     private Integer humidity;
+    private Updates updates;
+    private TimeDate timeDate;
+
+    @JsonProperty
+    public Rain getRain() {
+        return rain;
+    }
+
+    @JsonProperty
+    public void setRain(Rain rain) {
+        this.rain = rain;
+    }
+
+    @JsonProperty
+    public Updates getUpdates() {
+        return updates;
+    }
+
+    @JsonProperty
+    public void setUpdates(Updates updates) {
+        this.updates = updates;
+    }
+
+    @JsonProperty
+    public TimeDate getTimeDate() {
+        return timeDate;
+    }
+
+    @JsonProperty
+    public void setTimeDate(TimeDate timeDate) {
+        this.timeDate = timeDate;
+    }
 
     @JsonProperty
     public Temperature getTemperature() {
@@ -89,6 +123,8 @@ public class WeatherReport implements JSONRecord {
         private final Integer C;
         private final Integer F;
 
+        private FeelsLike feelsLike;
+
         @JsonCreator
         public Temperature(@JsonProperty("C") Integer c, @JsonProperty("F") Integer f) {
             C = c;
@@ -104,6 +140,38 @@ public class WeatherReport implements JSONRecord {
         public Integer getF() {
             return F;
         }
+
+        @JsonProperty
+        public FeelsLike getFeelsLike() {
+            return feelsLike;
+        }
+
+        @JsonProperty
+        public void setFeelsLike(FeelsLike feelsLike) {
+            this.feelsLike = feelsLike;
+        }
+
+        public static class FeelsLike {
+
+            private final Integer C;
+            private final Integer F;
+
+            @JsonCreator
+            public FeelsLike(@JsonProperty("C") Integer c, @JsonProperty("F") Integer f) {
+                C = c;
+                F = f;
+            }
+
+            @JsonProperty
+            public Integer getC() {
+                return C;
+            }
+
+            @JsonProperty
+            public Integer getF() {
+                return F;
+            }
+        }
     }
 
     public static class Wind {
@@ -111,12 +179,14 @@ public class WeatherReport implements JSONRecord {
         private final Speed speed;
         private final WindDirection direction;
         private final String directionFull;
+        private final String description;
 
         @JsonCreator
-        public Wind(@JsonProperty("speed") Speed speed, @JsonProperty("direction") WindDirection direction, @JsonProperty("directionFull") String directionFull) {
+        public Wind(@JsonProperty("speed") Speed speed, @JsonProperty("direction") WindDirection direction, @JsonProperty("directionFull") String directionFull, @JsonProperty("description") String description) {
             this.speed = speed;
             this.direction = direction;
             this.directionFull = directionFull;
+            this.description = description;
         }
 
         @JsonProperty
@@ -132,6 +202,11 @@ public class WeatherReport implements JSONRecord {
         @JsonProperty
         public String getDirectionFull() {
             return directionFull;
+        }
+
+        @JsonProperty
+        public String getDescription() {
+            return description;
         }
 
         public static class Speed {
@@ -183,11 +258,13 @@ public class WeatherReport implements JSONRecord {
 
         private final Integer weatherType;
         private final String weatherTypeText;
+        private final String weatherDescription;
 
         @JsonCreator
-        public Weather(@JsonProperty("weatherType") Integer weatherType, @JsonProperty("weatherTypeText") String weatherTypeText) {
+        public Weather(@JsonProperty("weatherType") Integer weatherType, @JsonProperty("weatherTypeText") String weatherTypeText, @JsonProperty("weatherDescription") String weatherDescription) {
             this.weatherType = weatherType;
             this.weatherTypeText = weatherTypeText;
+            this.weatherDescription = weatherDescription;
         }
 
         @JsonProperty
@@ -198,6 +275,84 @@ public class WeatherReport implements JSONRecord {
         @JsonProperty
         public String getWeatherTypeText() {
             return weatherTypeText;
+        }
+
+        @JsonProperty
+        public String getWeatherDescription() {
+            return weatherDescription;
+        }
+    }
+
+    public static class Updates {
+
+        private final String issueDate;
+        private final String lastUpdateDate;
+
+        @JsonCreator
+        public Updates(@JsonProperty("issueDate") String issueDate, @JsonProperty("lastUpdateDate") String lastUpdateDate) {
+            this.issueDate = issueDate;
+            this.lastUpdateDate = lastUpdateDate;
+        }
+
+        @JsonProperty
+        public String getIssueDate() {
+            return issueDate;
+        }
+
+        @JsonProperty
+        public String getLastUpdateDate() {
+            return lastUpdateDate;
+        }
+    }
+
+    public static class TimeDate {
+
+        private final String weatherTime;
+        private final Integer weatherTimeLength;
+        private final String localDate;
+
+        @JsonCreator
+        public TimeDate(@JsonProperty("weatherTime") String weatherTime, @JsonProperty("weatherTimeLength") Integer weatherTimeLength, @JsonProperty("localDate") String localDate) {
+            this.weatherTime = weatherTime;
+            this.weatherTimeLength = weatherTimeLength;
+            this.localDate = localDate;
+        }
+
+        @JsonProperty
+        public String getWeatherTime() {
+            return weatherTime;
+        }
+
+        @JsonProperty
+        public Integer getWeatherTimeLength() {
+            return weatherTimeLength;
+        }
+
+        @JsonProperty
+        public String getLocalDate() {
+            return localDate;
+        }
+    }
+
+    public static class Rain {
+
+        private final Integer chance;
+        private final String description;
+
+        @JsonCreator
+        public Rain(@JsonProperty("chance") Integer chance, @JsonProperty("description") String description) {
+            this.chance = chance;
+            this.description = description;
+        }
+
+        @JsonProperty
+        public Integer getChance() {
+            return chance;
+        }
+
+        @JsonProperty
+        public String getDescription() {
+            return description;
         }
     }
 }

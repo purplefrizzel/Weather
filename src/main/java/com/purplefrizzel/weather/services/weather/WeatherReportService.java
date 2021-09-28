@@ -1,5 +1,6 @@
 package com.purplefrizzel.weather.services.weather;
 
+import com.purplefrizzel.weather.api.models.dto.WeatherAggregatedForecastsDTO;
 import com.purplefrizzel.weather.api.models.dto.WeatherObservationsDTO;
 import com.purplefrizzel.weather.api.models.weather.WeatherReport;
 import com.purplefrizzel.weather.core.utils.Lang;
@@ -14,5 +15,11 @@ public class WeatherReportService {
         WeatherObservationsDTO observations = BBCApi.observationsClient(location, lang, WeatherObservationsDTO.class);
 
         return observations.getObservations()[0].convert();
+    }
+
+    public WeatherReport[] getWeatherReports(String location, Lang lang) throws URISyntaxException, IOException, InterruptedException {
+        WeatherAggregatedForecastsDTO aggregatedForecastsDTO = BBCApi.aggregatedForecasts(location, lang, WeatherAggregatedForecastsDTO.class);
+
+        return aggregatedForecastsDTO.convert();
     }
 }
